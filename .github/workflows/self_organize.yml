@@ -27,7 +27,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install googletrans==4.0.0rc1
-          pip install pandas matplotlib basemap
+          pip install pandas matplotlib basemap requests
 
       - name: Generate repo manifest
         run: python generate_repo_manifest.py
