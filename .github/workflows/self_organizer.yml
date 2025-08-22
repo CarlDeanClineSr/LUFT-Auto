@@ -1,0 +1,64 @@
+name: Self-Organize LUFT Repo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: '0 7 * * 1' # Every Monday at 07:00 UTC
+
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install googletrans==4.0.0rc1
+          pip install pandas matplotlib basemap requests
+
+      - name: Generate repo manifest
+        run: python generate_repo_manifest.py
+
+      - name: Auto-index repository
+        run: python auto_index_repo.py
+
+      - name: Slugify and rename notes
+        run: python slugify_rename_notes.py
+
+      - name: Update README with manifest stats (EN/FR/RU/JA)
+        run: python update_readme_bilingual.py
+
+      - name: Generate index diff log
+        run: python index_diff_log.py
+
+      - name: Generate contributor map
+        run: python generate_contributor_map.py
+
+      - name: Generate contributor world map image
+        run: python generate_contributor_map_image.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "LUFT-AutoBot"
+          git config --global user.email "actions@github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            CHANGES=$(git diff --cached --name-status | wc -l)
+            git commit -m "Auto-update: $CHANGES file(s) changed — manifest, index, README, diff log, contributor map [skip ci]"
+            git push
+          fi
