@@ -1,0 +1,21 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore OS/macOS/Windows system files
+.DS_Store
+Thumbs.db
+
+# Ignore auto-generated and log files
+repo_manifest.txt
+INDEX.md
+INDEX_DIFF.md
+contributors_map.csv
+contributors_map.png
+.INDEX_PREV.md
+
+# Ignore virtual environments (if you use them)
+venv/
+.env/
