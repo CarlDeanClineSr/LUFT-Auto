@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: LUFT-Auto
+message: "If you use LUFT-Auto, please cite this work."
+authors:
+  - given-names: Carl Dean
+    family-names: Cline Sr
+repository-code: https://github.com/CarlDeanClineSr/LUFT-Auto
+license: "Apache-2.0"
