@@ -1,0 +1,39 @@
+# First-pass, pre-registered parameters for S_coh scans
+version: 0.1.0
+notes: |
+  Freeze these for initial runs to avoid post‑hoc tuning.
+  Adjust only via new version bumps.
+
+inputs:
+  # Path to CSV or Parquet; override via CLI if needed
+  file: data/sample_dimuon.csv
+  format: csv
+
+selection:
+  # Minimal baseline selections (adjust in later versions)
+  min_pt: 3.0        # GeV
+  max_eta: 2.4
+  mass_window: [2.9, 3.3]   # J/psi control (example)
+
+bins:
+  mass:
+    edges: [2.5, 2.9, 3.1, 3.3, 3.5]
+  rapidity:
+    edges: [-2.4, -1.2, 0.0, 1.2, 2.4]
+
+weights:
+  # Freeze simple weights for first pass
+  per_event: 1.0
+  resolution_equalization: false
+
+outputs:
+  dir: out
+  tag: first_pass
+
+metrics:
+  # Placeholder; align with the analysis code
+  s_coh:
+    method: "toy_v0"
+    params:
+      smoothing: 0
+      regularization: 0.0
