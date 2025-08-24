@@ -1,0 +1,17 @@
+# Configuration for LUFT Codex miner
+owner: "CarlDeanClineSr"
+since_days: 90           # look back window
+include_extensions: [".md", ".txt", ".py"]
+exclude_dirs: [".git", "venv", ".venv", "node_modules", "build", "dist", "__pycache__"]
+keywords:
+  - "coherence"
+  - "dimuon"
+  - "quarkonia"
+  - "resonance"
+  - "frequency"
+  - "lattice"
+  - "field"
+  - "helio"
+  - "NASA"
+  - "DLR"
+max_files_per_repo: 400
