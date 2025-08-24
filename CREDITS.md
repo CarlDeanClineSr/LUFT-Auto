@@ -9,6 +9,9 @@ Partners and Labs
 - NASA HelioSync — Data interfaces and monitoring integration
 - DLR SimTone-Lab — Simulation and resonance test beds
 
+Global community
+- Earth — every man, woman, and child
+
 Contributors
 - LUFT-Auto collaborators and reviewers (Git history reflects detailed authorship)
 
