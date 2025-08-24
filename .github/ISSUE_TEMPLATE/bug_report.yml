@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a bug to help us improve
+labels: [bug]
+title: "bug: <short description>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill this out!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us what you expected to happen
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: Minimal steps/commands/data required to reproduce
+      render: bash
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/output
+      render: shell
+  - type: input
+    id: version
+    attributes:
+      label: LUFT-Auto version or commit
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I have searched existing issues
+          required: true
