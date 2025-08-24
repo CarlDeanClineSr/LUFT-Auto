@@ -38,3 +38,12 @@ Unifications, Physics-based Sciences L.U.F.T.
 | Copilot |  |  |  |
 
 <!-- LUFT_CONTRIBUTOR_MAP END -->
+
+## Visual Gallery and LUFT Codex
+
+- Image Gallery: See graphics/gallery.md for AI-generated conceptual images and how to reproduce them.
+- LUFT Codex: See codex/dashboard.md for an auto-generated dashboard indexing concepts, math, protocols, and datasets across recent repositories.
+
+Quick start
+- Gallery: pip install -r requirements-optional.txt and run: python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
+- Codex: set GITHUB_TOKEN and run: python tools/knowledge_miner.py --owner "CarlDeanClineSr" --since-days 90
