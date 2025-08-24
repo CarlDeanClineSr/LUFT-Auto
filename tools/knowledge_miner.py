@@ -4,14 +4,13 @@ import datetime as dt
 import os
 import re
 import sys
-import textwrap
 from typing import List, Dict, Any, Optional
 
 import yaml
 
 try:
     from github import Github
-except Exception as e:
+except Exception:
     print("Please install PyGithub: pip install PyGithub", file=sys.stderr)
     raise
 
@@ -33,10 +32,14 @@ def is_text_file(name: str, include_ext: List[str]) -> bool:
 def extract_highlights(name: str, content: str, keywords: List[str]) -> Dict[str, Any]:
     lines = content.splitlines()
     heads = [l.strip() for l in lines if l.strip().startswith("#")]
-    todos = [l.strip() for l in lines if re.search(r"\\b(TODO|OPEN|QUESTION|NEXT)\\b", l, re.I)]
+    todos = [l.strip() for l in lines if re.search(r"\b(TODO|OPEN|QUESTION|NEXT)\b", l, re.I)]
     mentions = {}
     for kw in keywords:
-        cnt = len(re.findall(re.escape(kw), content, flags=re.I))
+        try:
+            import re as _re
+            cnt = len(_re.findall(_re.escape(kw), content, flags=_re.I))
+        except Exception:
+            cnt = content.lower().count(kw.lower())
         if cnt:
             mentions[kw] = cnt
     return {
@@ -50,7 +53,7 @@ def fetch_content(repo, path: str) -> Optional[str]:
         f = repo.get_contents(path)
         if isinstance(f, list):
             return None
-        if f.encoding == "base64":
+        if getattr(f, "encoding", "") == "base64":
             return base64.b64decode(f.content).decode("utf-8", errors="ignore")
         return f.decoded_content.decode("utf-8", errors="ignore")
     except Exception:
@@ -175,7 +178,7 @@ def main():
 
     repos_data = []
     for r in repos:
-        print(f"Indexing {r.full_name} (updated {r.updated_at}) ...")
+        print(f"Indexing {r.full_name} (updated {r.updated_at}) …")
         repos_data.append(gather_repo(r, conf))
 
     os.makedirs("codex", exist_ok=True)
