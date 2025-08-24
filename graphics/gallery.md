@@ -4,7 +4,10 @@ This gallery showcases conceptual and AI-generated visuals inspired by LUFT: uni
 
 How to generate images
 - Install deps: pip install -r requirements-optional.txt
-- Generate: python tools/generate_luft_images.py --backend diffusers --prompts graphics/prompts.yaml --outdir graphics/generated
+- Generate (OpenAI default): python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
+- Alternative backends:
+  - Stability API: python tools/generate_luft_images.py --backend stability --prompts graphics/prompts.yaml --outdir graphics/generated
+  - Local (diffusers/SDXL): python tools/generate_luft_images.py --backend diffusers --prompts graphics/prompts.yaml --outdir graphics/generated
 - The images referenced below will be created in graphics/generated/.
 
 Gallery
