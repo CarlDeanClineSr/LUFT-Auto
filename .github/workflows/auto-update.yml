@@ -1,0 +1,46 @@
+permissions:
+  contents: write
+
+jobs:
+  auto_update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          ref: main
+
+      - name: Configure git identity
+        run: |
+          git config user.name "LUFT-AutoBot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Make changes
+        run: |
+          # ... your script that edits files ...
+          git status
+
+      - name: Commit changes (if any)
+        run: |
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "Auto-update: manifest, index, README, diff log, contributor map [skip ci]"
+          else
+            echo "No changes to commit."
+          fi
+
+      - name: Rebase onto latest main
+        run: |
+          git fetch origin main
+          # Rebase only if our HEAD is not already atop origin/main
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            # Autostash guards against local uncommitted changes
+            git pull --rebase --autostash origin main
+          fi
+
+      - name: Push with lease (safe)
+        run: |
+          # --force-with-lease avoids clobbering concurrent updates
+          git push origin HEAD:main --force-with-lease
