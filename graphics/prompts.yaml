@@ -1,5 +1,5 @@
-# LUFT image prompts for generation (Stable Diffusion XL or API backends)
-# Run: python tools/generate_luft_images.py --backend diffusers --prompts graphics/prompts.yaml --outdir graphics/generated
+# LUFT image prompts for generation (OpenAI or Stability API backends; diffusers optional)
+# Run (OpenAI default): python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
 defaults:
   steps: 30
   guidance_scale: 7.0
