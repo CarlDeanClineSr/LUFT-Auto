@@ -1,0 +1,56 @@
+name: Repo Guardian
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '33 11 * * *' # daily at 11:33 UTC
+  workflow_run:
+    workflows: ["Auto Update via PR"]
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  guardian:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Summarize CI and bot PRs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const now = new Date();
+            const since = new Date(now.getTime() - 24*60*60*1000).toISOString();
+
+            // Fetch recent workflow runs on default branch
+            const runs = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {
+              owner, repo, per_page: 100, branch: 'main'
+            });
+            const recent = runs.filter(r => new Date(r.created_at) >= new Date(since));
+            const failed = recent.filter(r => r.conclusion === 'failure' || r.conclusion === 'timed_out' || r.conclusion === 'cancelled');
+
+            // Fetch auto-update PRs older than 24h
+            const prs = await github.paginate(github.rest.pulls.list, { owner, repo, state: 'open', per_page: 100 });
+            const botPRs = prs.filter(pr => pr.head.ref.startsWith('autobot/auto-update') || (pr.labels||[]).some(l => l.name === 'auto-update'));
+            const staleBot = botPRs.filter(pr => new Date(pr.created_at) < new Date(since));
+
+            const title = 'Repo Guardian: CI status and pending bot PRs';
+            let body = `\n**Time window:** since ${since}\n\n` +
+              `- Recent runs (last 24h): ${recent.length}\n` +
+              `- Failures/timeouts/cancelled: ${failed.length}\n` +
+              (failed.length ? failed.map(r => `  - ${r.name} #${r.run_number} (${r.event}) → ${r.conclusion} — ${r.html_url}`).join('\n') + '\n' : '') +
+              `- Open auto-update PRs older than 24h: ${staleBot.length}\n` +
+              (staleBot.length ? staleBot.map(pr => `  - #${pr.number} ${pr.title} — ${pr.html_url}`).join('\n') + '\n' : '') +
+              `\nLabels: ci, guardian, bot`;
+
+            // Find existing issue
+            const issues = await github.paginate(github.rest.issues.listForRepo, { owner, repo, state: 'open', labels: 'guardian', per_page: 100 });
+            const existing = issues.find(i => i.title === title);
+
+            if (existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({ owner, repo, title, body, labels: ['ci','guardian','bot'] });
+            }
