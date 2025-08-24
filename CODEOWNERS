@@ -1,0 +1,11 @@
+# CODEOWNERS makes GitHub auto-request reviews from owners when matching files change.
+# Put this file at the repo root or in .github/.
+# Syntax: pattern <one or more owners>
+
+# Default owner for all files in the repo:
+* @CarlDeanClineSr
+
+# Examples for later (uncomment and adjust handles as needed):
+# docs/* @CarlDeanClineSr @partner-handle
+# analysis/** @CarlDeanClineSr
+# scripts/*.py @CarlDeanClineSr
