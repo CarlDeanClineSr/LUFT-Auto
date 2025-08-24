@@ -49,52 +49,56 @@ def analyze_quarkonium(df, state="Jpsi", mass_window=(2.95, 3.25), mass_init=3.0
     """Return per-bin results including effective width and S_coh components."""
     results = []
     keys = ["era", "system", "centrality"]
-    for (era, system, cent), g in bin_by(df[(df["m"] >= mass_window[0]) & (df["m"] <= mass_window[1])], keys):
+    mask = (df["m"] >= mass_window[0]) & (df["m"] <= mass_window[1])
+    for (era, system, cent), g in bin_by(df[mask], keys):
         # Histogram
         bins = np.linspace(mass_window[0], mass_window[1], 120)
-        hist, edges = np.histogram(g["m"], bins=bins, weights=g.get("w", pd.Series(np.ones(len(g)), index=g.index)))
+        w = g["w"].to_numpy() if "w" in g.columns else np.ones(len(g))
+        hist, edges = np.histogram(g["m"], bins=bins, weights=w)
         centers = 0.5 * (edges[1:] + edges[:-1])
 
         # Initial params: amp, mean, sigma, gamma, b0, b1
-        init = [hist.max(), mass_init, 0.02, 0.02, np.median(hist[:5]), 0.0]
+        init = [max(hist.max(), 1.0), mass_init, 0.02, 0.02, float(np.median(hist[:5]) if len(hist) >= 5 else 0.0), 0.0]
         fit, err = fit_peak(centers, hist, init)
         if fit is None:
             continue
         amp, mean, sigma, gamma, b0, b1 = fit
         # Effective width proxy (pseudo-Voigt): combine sigma & gamma
-        gamma_eff = np.sqrt(sigma**2 + gamma**2)
+        gamma_eff = float(np.sqrt(sigma**2 + gamma**2))
 
         # Simple v2{EP} proxy from muon azimuths relative to psi2
         if "phi" in g.columns and "psi2" in g.columns:
             dphi = (g["phi"] - g["psi2"]).to_numpy()
-            v2 = np.nanmean(np.cos(2.0 * dphi))
-            v2_sig = v2 / (np.nanstd(np.cos(2.0 * dphi)) / np.sqrt(max(len(dphi), 1)))
+            v2 = float(np.nanmean(np.cos(2.0 * dphi))) if len(dphi) else np.nan
+            denom = np.nanstd(np.cos(2.0 * dphi)) / np.sqrt(max(len(dphi), 1)) if len(dphi) else np.nan
+            v2_sig = float(v2 / denom) if denom and denom != 0 else np.nan
         else:
             v2, v2_sig = np.nan, np.nan
 
-        # Placeholders for polarization λθ and cumulant c2{2} — fill when angles available
+        # Placeholders for polarization λθ and cumulant c2{2}
         lam_theta = np.nan
         c2_sig = np.nan
 
         results.append(dict(
-            state=state, era=era, system=system, centrality=cent, mean=mean,
+            state=state, era=era, system=system, centrality=cent, mean=float(mean),
             gamma_eff=gamma_eff, v2=v2, v2_sig=v2_sig, lam_theta=lam_theta, c2_sig=c2_sig
         ))
     out = pd.DataFrame(results)
-
-    # Resolution equalization hook: subtract reference resolution per era if provided externally
-    # out["gamma_eff_corr"] = out["gamma_eff"] - res_ref[out["era"]]  # TODO
+    if out.empty:
+        return out
 
     # Build S_coh z-scored across comparable bins
     for col in ["gamma_eff", "v2_sig", "lam_theta", "c2_sig"]:
-        z = zscore(out[col])
-        out[f"z_{col}"] = z
+        try:
+            out[f"z_{col}"] = zscore(out[col])
+        except Exception:
+            out[f"z_{col}"] = np.nan
 
-    # Smaller gamma_eff suggests narrower peaks; invert sign so higher is more coherent after equalization step.
+    # Smaller gamma_eff suggests narrower peaks; invert sign so higher is more coherent.
     out["z_gamma_inv"] = -out["z_gamma_eff"]
 
     # First-pass S_coh: equal weights across available components
-    components = ["z_gamma_inv", "z_v2_sig"]  # add "z_lam_theta", "z_c2_sig" when those are populated
+    components = [c for c in ["z_gamma_inv", "z_v2_sig", "z_lam_theta", "z_c2_sig"] if c in out.columns]
     out["S_coh"] = out[components].mean(axis=1, skipna=True)
 
     return out
@@ -102,12 +106,14 @@ def analyze_quarkonium(df, state="Jpsi", mass_window=(2.95, 3.25), mass_init=3.0
 def compare_eras(df_res, era_pairs=("pre", "post")):
     """Statistical comparison of S_coh between eras per centrality/system."""
     comps = []
+    if df_res is None or df_res.empty:
+        return pd.DataFrame(comps)
     for (system, cent), g in bin_by(df_res, ["system", "centrality"]):
         a = g.loc[g["era"] == era_pairs[0], "S_coh"].dropna()
         b = g.loc[g["era"] == era_pairs[1], "S_coh"].dropna()
         if len(a) >= 3 and len(b) >= 3:
             stat, p = ks_2samp(a, b)
-            comps.append(dict(system=system, centrality=cent, ks_stat=stat, p_value=p, n_pre=len(a), n_post=len(b)))
+            comps.append(dict(system=system, centrality=cent, ks_stat=float(stat), p_value=float(p), n_pre=int(len(a)), n_post=int(len(b))))
     return pd.DataFrame(comps)
 
 # -----------------------
@@ -116,7 +122,10 @@ def compare_eras(df_res, era_pairs=("pre", "post")):
 
 def main(input_path: str, output_dir: str, state="Jpsi"):
     os.makedirs(output_dir, exist_ok=True)
-    df = pd.read_parquet(input_path) if input_path.endswith(".parquet") else pd.read_csv(input_path)
+    if input_path.endswith(".parquet"):
+        df = pd.read_parquet(input_path)
+    else:
+        df = pd.read_csv(input_path)
     # Basic cleaning
     df = df.dropna(subset=["m", "centrality", "era", "system"])
     # Choose mass window based on state
@@ -134,11 +143,14 @@ def main(input_path: str, output_dir: str, state="Jpsi"):
     era_cmp.to_csv(os.path.join(output_dir, f"{state}_era_comparison.csv"), index=False)
 
     # Simple text summary
-    sig = era_cmp[era_cmp["p_value"] < 0.01]
+    sig = era_cmp[era_cmp["p_value"] < 0.01] if not era_cmp.empty else pd.DataFrame()
     with open(os.path.join(output_dir, f"{state}_summary.txt"), "w") as f:
-        f.write(f"Significant S_coh differences (p<0.01): {len(sig)} bins\n")
-        for _, r in sig.iterrows():
-            f.write(f"- {r['system']} centrality {r['centrality']}: KS={r['ks_stat']:.3f}, p={r['p_value']:.2e}\n")
+        if sig.empty:
+            f.write("No significant S_coh differences (p<0.01) found.\n")
+        else:
+            f.write(f"Significant S_coh differences (p<0.01): {len(sig)} bins\n")
+            for _, r in sig.iterrows():
+                f.write(f"- {r['system']} centrality {r['centrality']}: KS={r['ks_stat']:.3f}, p={r['p_value']:.2e}\n")
 
 if __name__ == "__main__":
     import argparse
