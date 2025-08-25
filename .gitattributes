@@ -1,0 +1,18 @@
+# Normalize line endings for text
+*.md text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Treat common binaries as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+
+# Use Git LFS for large science/binary data
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.nc  filter=lfs diff=lfs merge=lfs -text
+*.gz  filter=lfs diff=lfs merge=lfs -text

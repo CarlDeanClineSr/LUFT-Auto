@@ -1,0 +1,28 @@
+---
+name: Cross-Repo Guard
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions: read-all
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify repository context
+        run: |
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          if [[ "$GITHUB_REPOSITORY" != "CarlDeanClineSr/LUFT-Auto" ]]; then
+            echo "Unexpected repository context: $GITHUB_REPOSITORY"
+            exit 1
+          fi
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Print remotes
+        run: |
+          git remote -v

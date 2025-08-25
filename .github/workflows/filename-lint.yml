@@ -1,0 +1,54 @@
+---
+name: Filename Lint
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for illegal characters and case-collisions
+        run: |
+          python - << 'PY'
+          import os, sys
+          illegal = set('<>:"\\|?*')
+          bad = []
+          seen_lower = {}
+          for root, dirs, files in os.walk('.', topdown=True):
+            if root.startswith('./.git'):
+              continue
+            # include dirs and files
+            for name in dirs + files:
+              path = os.path.join(root, name)
+              rel = os.path.relpath(path, '.')
+              # Skip .git dir
+              if rel.startswith('.git'):
+                continue
+              # Illegal chars
+              if any(ch in illegal for ch in name):
+                bad.append(f"Illegal char in: {rel}")
+              # Spaces discouraged
+              if ' ' in name:
+                bad.append(f"Space in name: {rel}")
+              # Uppercase letters discouraged
+              if name != name.lower():
+                bad.append(f"Uppercase in name: {rel}")
+              # Case-collisions
+              low = rel.lower()
+              prev = seen_lower.get(low)
+              if prev and prev != rel:
+                bad.append(f"Case-collision: '{prev}' vs '{rel}'")
+              else:
+                seen_lower[low] = rel
+          if bad:
+            print('Filename lint failed:')
+            for b in bad:
+              print(' -', b)
+            sys.exit(1)
+          else:
+            print('Filename lint passed.')
+          PY
