@@ -77,7 +77,9 @@ def main():
         print(f" - {src} -> {dst}")
     if apply:
         for src, dst in changes:
-            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            dst_dir = os.path.dirname(dst)
+            if dst_dir and dst_dir != '.':
+                os.makedirs(dst_dir, exist_ok=True)
             git_mv(src, dst)
         print("Applied renames with git mv.")
     else:
