@@ -26,6 +26,7 @@
 - configs/coherence.yaml
 - contributors_map.csv
 - contributors_map.png
+- conversations/LUFT_Chat_relay_2025-08-26T142729Z.md
 - conversations/relay_handoff_20250824.md
 - data/sample_dimuon.csv
 - docs/LUFT_CERN_Math_AUG26_2025.md
@@ -70,9 +71,9 @@
 - git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.idx
-- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.pack
-- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.rev
+- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.idx
+- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.pack
+- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.rev
 - git/refs/heads/main
 - git/refs/remotes/origin/ci/auto-index
 - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
