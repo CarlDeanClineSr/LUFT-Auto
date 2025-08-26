@@ -1,0 +1,105 @@
+## Index Diff @ 2025-08-26T11:16:20.790250Z
+
+Added lines: 96, Removed lines: 0
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -0,0 +1,96 @@
++# LUFT Repository Index
++
++- CITATION.cff
++- CODEOWNERS
++- CODE_OF_CONDUCT.md
++- CONTRIBUTING.md
++- CREDITS.md
++- CREDITS_LUFT.md
++- LUFT_Field_Memory_and_PreMatter_Dynamics.md
++- LUFT_README.md
++- LUFT_Resonance_Watch.md
++- LUFT_Scale_Law_and_Literature_Bridge.md
++- Makefile
++- README.md
++- SECURITY.md
++- SECURITY_LUFT.md
++- START_HERE.md
++- V2_LUFT_Resonance_Watch.md
++- VISION.md
++- auto_index_repo.py
++- codex/README.md
++- codex/config.yaml
++- codex/dashboard.md
++- configs/coherence.yaml
++- data/sample_dimuon.csv
++- docs/SMOKE_TEST.md
++- docs/black_holes_and_simultaneity.md
++- docs/correlation-capacity.md
++- docs/reading/bell_1964_epr.md
++- docs/studies/dimuon_coherence_scan.md
++- generate_contributor_map.py
++- generate_contributor_map_image.py
++- generate_repo_manifest.py
++- git/FETCH_HEAD
++- git/HEAD
++- git/config
++- git/config.worktree
++- git/description
++- git/hooks/applypatch-msg.sample
++- git/hooks/commit-msg.sample
++- git/hooks/fsmonitor-watchman.sample
++- git/hooks/post-update.sample
++- git/hooks/pre-applypatch.sample
++- git/hooks/pre-commit.sample
++- git/hooks/pre-merge-commit.sample
++- git/hooks/pre-push.sample
++- git/hooks/pre-rebase.sample
++- git/hooks/pre-receive.sample
++- git/hooks/prepare-commit-msg.sample
++- git/hooks/push-to-checkout.sample
++- git/hooks/sendemail-validate.sample
++- git/hooks/update.sample
++- git/index
++- git/info/exclude
++- git/logs/HEAD
++- git/logs/refs/heads/main
++- git/logs/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
++- git/logs/refs/remotes/origin/copilot/fix-3d987346-40f8-4401-a581-501e2046dc2e
++- git/logs/refs/remotes/origin/copilot/fix-45ba0c6a-ce0e-492a-9337-6da682cdbf39
++- git/logs/refs/remotes/origin/copilot/fix-6978b218-0752-46f6-a525-b96461a8424e
++- git/logs/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
++- git/logs/refs/remotes/origin/copilot/fix-daad71fd-fb25-4540-87fc-64df6a3a2e89
++- git/logs/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
++- git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
++- git/logs/refs/remotes/origin/copilot/fix-ff636945-16df-4bec-a942-8c2e8f1fedef
++- git/logs/refs/remotes/origin/docs/correlation-capacity
++- git/logs/refs/remotes/origin/main
++- git/objects/pack/pack-453107d8dff1169a98f5edcc6ee1c164c0132eaa.idx
++- git/objects/pack/pack-453107d8dff1169a98f5edcc6ee1c164c0132eaa.pack
++- git/objects/pack/pack-453107d8dff1169a98f5edcc6ee1c164c0132eaa.rev
++- git/refs/heads/main
++- git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
++- git/refs/remotes/origin/copilot/fix-3d987346-40f8-4401-a581-501e2046dc2e
++- git/refs/remotes/origin/copilot/fix-45ba0c6a-ce0e-492a-9337-6da682cdbf39
++- git/refs/remotes/origin/copilot/fix-6978b218-0752-46f6-a525-b96461a8424e
++- git/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
++- git/refs/remotes/origin/copilot/fix-daad71fd-fb25-4540-87fc-64df6a3a2e89
++- git/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
++- git/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
++- git/refs/remotes/origin/copilot/fix-ff636945-16df-4bec-a942-8c2e8f1fedef
++- git/refs/remotes/origin/docs/correlation-capacity
++- git/refs/remotes/origin/main
++- graphics/gallery.md
++- graphics/prompts.yaml
++- index_diff_log.py
++- repo_manifest.txt
++- requirements-optional.txt
++- results/SUMMARY_TABLE.md
++- scripts/auto_index_repo.py
++- scripts/extract_math_lines.py
++- scripts/sim_correlation_capacity.py
++- slugify_rename_notes.py
++- tools/dimuon_coherence_scan.py
++- tools/generate_luft_images.py
++- tools/knowledge_miner.py
++- update_readme_bilingual.py
+
+
