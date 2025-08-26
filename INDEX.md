@@ -34,6 +34,7 @@
 - docs/black_holes_and_simultaneity.md
 - docs/correlation-capacity.md
 - docs/reading/bell_1964_epr.md
+- docs/studies/atlas_benchmarks.md
 - docs/studies/dimuon_coherence_scan.md
 - generate_contributor_map.py
 - generate_contributor_map_image.py
@@ -71,9 +72,9 @@
 - git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.idx
-- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.pack
-- git/objects/pack/pack-d7b19cce971fc6dfd3992d36ec684f14f74fd7ee.rev
+- git/objects/pack/pack-fbc7613c5c0933991d99516b56ddd61418e26d44.idx
+- git/objects/pack/pack-fbc7613c5c0933991d99516b56ddd61418e26d44.pack
+- git/objects/pack/pack-fbc7613c5c0933991d99516b56ddd61418e26d44.rev
 - git/refs/heads/main
 - git/refs/remotes/origin/ci/auto-index
 - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
