@@ -71,9 +71,9 @@ git/logs/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
 git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
 git/logs/refs/remotes/origin/docs/correlation-capacity
 git/logs/refs/remotes/origin/main
-git/objects/pack/pack-4c076f4d6f3fd5686d0847a19dc69a3910eeb320.idx
-git/objects/pack/pack-4c076f4d6f3fd5686d0847a19dc69a3910eeb320.pack
-git/objects/pack/pack-4c076f4d6f3fd5686d0847a19dc69a3910eeb320.rev
+git/objects/pack/pack-e82c80d84bbc7a7f5562f3b75cb4ee325bb52525.idx
+git/objects/pack/pack-e82c80d84bbc7a7f5562f3b75cb4ee325bb52525.pack
+git/objects/pack/pack-e82c80d84bbc7a7f5562f3b75cb4ee325bb52525.rev
 git/refs/heads/main
 git/refs/remotes/origin/ci/auto-index
 git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
@@ -99,5 +99,6 @@ scripts/sim_correlation_capacity.py
 slugify_rename_notes.py
 tools/dimuon_coherence_scan.py
 tools/generate_luft_images.py
+tools/hepmass_fit.py
 tools/knowledge_miner.py
 update_readme_bilingual.py
