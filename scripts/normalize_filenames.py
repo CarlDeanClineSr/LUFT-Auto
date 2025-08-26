@@ -30,8 +30,6 @@ def slugify(name: str) -> str:
         ch_low = ch.lower()
         if ch_low in ALLOWED:
             out.append(ch_low)
-        elif ch_low == '.':
-            out.append('.')
         # otherwise drop
     # avoid leading/trailing dots
     cleaned = ''.join(out).strip('.')
