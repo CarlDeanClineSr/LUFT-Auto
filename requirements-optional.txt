@@ -1,0 +1,12 @@
+PyGithub>=2.3.0
+PyYAML>=6.0.1
+pillow>=10.3.0
+requests>=2.32.3
+
+# Image generation (choose one or more backends)
+openai>=1.30.0
+torch>=2.2.0
+diffusers>=0.27.0
+transformers>=4.41.0
+accelerate>=0.30.0
+safetensors>=0.4.2

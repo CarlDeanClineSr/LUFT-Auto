@@ -1,12 +1,12 @@
 # Security Policy
 
-Please report vulnerabilities privately so we can fix them quickly.
+If you believe you have found a security vulnerability in LUFT-Auto, please report it responsibly.
 
 Preferred contact
-- Use "Report a vulnerability" on the repo’s Security tab (GitHub Security Advisories).
-- Or email: you@example.com (replace with your preferred address).
+- GitHub Security Advisories: https://github.com/CarlDeanClineSr/LUFT-Auto/security/advisories
+- Email: carldcline@gmail.com
 
-What to expect
-- We will acknowledge receipt within 3 business days.
-- We aim to provide a fix or mitigation timeline once triaged.
-- Please avoid public disclosure until a fix is released.
+Guidelines
+- Do not open public issues for vulnerabilities.
+- Provide clear reproduction steps and impact.
+- We will acknowledge receipt within 3 business days and follow up with triage and a remediation plan where applicable.

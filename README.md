@@ -1,29 +1,29 @@
 <!-- LUFT_MANIFEST_JA START -->
 ### luftリポジトリマニフェスト
 
--  **合計ファイル：** 63
--  **最後の更新：** 2025-08-24T21：22：29.161179z
+-  **合計ファイル：** 113
+-  **最後の更新：** 2025-08-26T17：02：30.549244z
 <!-- LUFT_MANIFEST_JA END -->
 
 <!-- LUFT_MANIFEST_RU START -->
 ### 📊 Luft Repo Manifest
 
-- ** Всего файлов: ** 63
--** Последнее обновление: ** 2025-08-24T21: 22: 27.718608Z
+- ** Всего файлов: ** 113
+-** Последнее обновление: ** 2025-08-26T17: 02: 28,903586Z
 <!-- LUFT_MANIFEST_RU END -->
 
 <!-- LUFT_MANIFEST_FR START -->
 ### 📊 Luft Repo Manifest
 
-- ** Fichiers totaux: ** 63
-- ** Dernière mise à jour: ** 2025-08-24T21: 22: 26.271285Z
+- ** Fichiers totaux: ** 113
+- ** Dernière mise à jour: ** 2025-08-26T17: 02: 28.465792Z
 <!-- LUFT_MANIFEST_FR END -->
 
 <!-- LUFT_MANIFEST_EN START -->
 ### 📊 LUFT Repo Manifest
 
-- **Total files:** 63
-- **Last update:** 2025-08-24T21:22:26.271034Z
+- **Total files:** 113
+- **Last update:** 2025-08-26T17:02:28.465536Z
 
 <!-- LUFT_MANIFEST_EN END -->
 
@@ -38,3 +38,18 @@ Unifications, Physics-based Sciences L.U.F.T.
 | Copilot |  |  |  |
 
 <!-- LUFT_CONTRIBUTOR_MAP END -->
+
+## Navigation
+
+- [START_HERE.md](START_HERE.md) - Welcome guide and key questions about LUFT & reality-based space
+- [docs/INDEX.md](docs/INDEX.md) - Auto-generated repository index with latest updates
+- [LUFT_Resonance_Watch.md](LUFT_Resonance_Watch.md) - Living log of real-world discoveries and cosmic news
+
+## Visual Gallery and LUFT Codex
+
+- Image Gallery: See graphics/gallery.md for AI-generated conceptual images and how to reproduce them.
+- LUFT Codex: See codex/dashboard.md for an auto-generated dashboard indexing concepts, math, protocols, and datasets across recent repositories.
+
+Quick start
+- Gallery: pip install -r requirements-optional.txt and run: python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
+- Codex: set GITHUB_TOKEN and run: python tools/knowledge_miner.py --owner "CarlDeanClineSr" --since-days 90

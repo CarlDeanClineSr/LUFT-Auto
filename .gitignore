@@ -1,21 +1,17 @@
-# Ignore Python cache and compiled files
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Ignore OS/macOS/Windows system files
-.DS_Store
-Thumbs.db
-
-# Ignore auto-generated and log files
-repo_manifest.txt
-INDEX.md
-INDEX_DIFF.md
-contributors_map.csv
-contributors_map.png
-.INDEX_PREV.md
-
-# Ignore virtual environments (if you use them)
+*.py[cod]
+*.egg-info/
+.env
+.venv
 venv/
-.env/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+
+# Build/output
+build/
+dist/
+out/

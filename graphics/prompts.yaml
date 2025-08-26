@@ -1,0 +1,33 @@
+# LUFT image prompts for generation (OpenAI or Stability API backends; diffusers optional)
+# Run (OpenAI default): python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
+defaults:
+  steps: 30
+  guidance_scale: 7.0
+  width: 1280
+  height: 720
+  negative_prompt: "text, watermark, logo, lowres, blurry, deformed, artifacts"
+items:
+  - name: "luft_field_lines"
+    prompt: "Scientific visualization of emergent field lines and resonance nodes on a subtle grid lattice, luminous energy flows, precise linework, clean dark background, high fidelity, cinematic, volumetric light, concept art"
+    seed: 1234
+  - name: "luft_coherence_spectrum"
+    prompt: "Frequency-coincidence spectrum mapped into spatial harmonics and color bands, smooth gradients, scientific diagram meets art, crisp labels style (no actual text), elegant, minimal"
+    seed: 2234
+  - name: "luft_dimuon_map"
+    prompt: "Conceptual dimuon/quarkonia coherence map, layered contours and heatmaps, feature-flagged resolution bands, sleek modern infographic style"
+    seed: 3234
+  - name: "luft_lattice_resonance"
+    prompt: "Lattice geometry with quantized resonance shells, interference patterns, symmetric yet organic, subtle depth of field, neon accents on dark"
+    seed: 4234
+  - name: "luft_spacetime_manifold"
+    prompt: "Space-time manifold surface with energy flow lines, curvature and gradients, general relativity vibes blended with quantum textures, elegant, high detail"
+    seed: 5234
+  - name: "luft_heliosync_streams"
+    prompt: "Solar wind data streams and monitoring overlays, magnetospheric arcs, helio-inspired visualization, aurora tints, scientific but artistic"
+    seed: 6234
+  - name: "luft_cmb_overlay"
+    prompt: "Cosmic microwave background style texture with faint LUFT resonance overlays and fine filamentary structures, balanced color palette, subtle"
+    seed: 7234
+  - name: "luft_logo_mark"
+    prompt: "Minimal LUFT sigil: abstract unification of energy, matter, space, time into a single geometric motif, monoline, iconic, vector-like, centered"
+    seed: 8234

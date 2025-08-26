@@ -1,0 +1,50 @@
+name: Cross-Repo Guard
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  # Allowlist for repository validation - can be extended in future
+  ALLOWED_REPOS: |
+    CarlDeanClineSr/LUFT-Auto
+
+jobs:
+  cross-repo-guard:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Validate Repository Context
+        run: |
+          CURRENT_REPO="${{ github.repository }}"
+          echo "Current repository: $CURRENT_REPO"
+          echo "Checking against allowlist..."
+          
+          # Convert allowlist to array and check
+          IFS=$'\n' read -d '' -r -a allowed_repos <<< "$ALLOWED_REPOS" || true
+          
+          repo_allowed=false
+          for allowed_repo in "${allowed_repos[@]}"; do
+            # Trim whitespace
+            allowed_repo=$(echo "$allowed_repo" | xargs)
+            if [[ "$CURRENT_REPO" == "$allowed_repo" ]]; then
+              repo_allowed=true
+              break
+            fi
+          done
+          
+          if [[ "$repo_allowed" == "true" ]]; then
+            echo "✅ Repository validation passed: $CURRENT_REPO is in the allowlist"
+            exit 0
+          else
+            echo "❌ Repository validation failed!"
+            echo "Current repository: $CURRENT_REPO"
+            echo "Allowed repositories:"
+            printf '%s\n' "${allowed_repos[@]}"
+            echo ""
+            echo "This workflow is configured to run only in the specified repositories."
+            echo "If you need to add this repository to the allowlist, update the ALLOWED_REPOS"
+            echo "environment variable in .github/workflows/cross-repo-guard.yml"
+            exit 1
+          fi
