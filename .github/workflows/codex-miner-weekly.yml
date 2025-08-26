@@ -34,7 +34,7 @@ jobs:
           python tools/knowledge_miner.py --config codex/config.yaml
       - name: Run knowledge miner (fallback mode)
         # Fallback mode when GitHub token is not available
-        if: ${{ secrets.GITHUB_TOKEN == '' }}
+        if: ${{ !secrets.GITHUB_TOKEN }}
         run: |
           echo "INFO: GITHUB_TOKEN not available, running in limited mode"
           python tools/knowledge_miner.py --config codex/config.yaml || echo "INFO: Knowledge miner completed with limited access"
