@@ -454,3 +454,32 @@ Added lines: 7, Removed lines: 3
  - scripts/sim_correlation_capacity.py
 
 
+## Index Diff @ 2025-08-26T17:03:37.183591Z
+
+Added lines: 4, Removed lines: 3
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -8,6 +8,7 @@
+ - CREDITS_LUFT.md
+ - INDEX.md
+ - INDEX_DIFF.md
++- LICENSE
+ - LUFT_Field_Memory_and_PreMatter_Dynamics.md
+ - LUFT_README.md
+ - LUFT_Resonance_Watch.md
+@@ -76,9 +77,9 @@
+ - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+ - git/logs/refs/remotes/origin/docs/correlation-capacity
+ - git/logs/refs/remotes/origin/main
+-- git/objects/pack/pack-7df1900e7271b29df338220bce33644b68159bd8.idx
+-- git/objects/pack/pack-7df1900e7271b29df338220bce33644b68159bd8.pack
+-- git/objects/pack/pack-7df1900e7271b29df338220bce33644b68159bd8.rev
++- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.idx
++- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.pack
++- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.rev
+ - git/refs/heads/main
+ - git/refs/remotes/origin/ci/auto-index
+ - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
+
+
