@@ -28,6 +28,7 @@
 - contributors_map.png
 - conversations/relay_handoff_20250824.md
 - data/sample_dimuon.csv
+- docs/LUFT_CERN_Math_AUG26_2025.md
 - docs/SMOKE_TEST.md
 - docs/black_holes_and_simultaneity.md
 - docs/correlation-capacity.md
@@ -67,12 +68,11 @@
 - git/logs/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
 - git/logs/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
 - git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
-- git/logs/refs/remotes/origin/copilot/fix-ff636945-16df-4bec-a942-8c2e8f1fedef
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-b6369419280ab2f4d43a00894fc28d9acfecc1cf.idx
-- git/objects/pack/pack-b6369419280ab2f4d43a00894fc28d9acfecc1cf.pack
-- git/objects/pack/pack-b6369419280ab2f4d43a00894fc28d9acfecc1cf.rev
+- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.idx
+- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.pack
+- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.rev
 - git/refs/heads/main
 - git/refs/remotes/origin/ci/auto-index
 - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
@@ -82,7 +82,6 @@
 - git/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
 - git/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
 - git/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
-- git/refs/remotes/origin/copilot/fix-ff636945-16df-4bec-a942-8c2e8f1fedef
 - git/refs/remotes/origin/docs/correlation-capacity
 - git/refs/remotes/origin/main
 - graphics/gallery.md
