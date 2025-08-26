@@ -1,6 +1,6 @@
 name: Auto Index (docs/INDEX.md)
 on:
-  push:
+  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
@@ -11,19 +11,34 @@ permissions:
 jobs:
   build-index:
     runs-on: ubuntu-latest
+    # Prevent self-trigger loops
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
       - name: Build docs/INDEX.md
         run: |
           python3 scripts/auto_index_repo.py
       - name: Create Pull Request with changes
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "chore(index): auto-update docs/INDEX.md"
+          commit-message: "chore(index): auto-update docs/INDEX.md [skip ci]"
           title: "chore(index): auto-update docs/INDEX.md"
+          body: |
+            This is an automated pull request to update the repository index.
+            
+            **Manual run instructions:**
+            1. Go to Actions → Auto Index (docs/INDEX.md)
+            2. Click "Run workflow"
+            3. Select branch and click "Run workflow"
           branch: ci/auto-index
           delete-branch: true
+          draft: true
           add-paths: |
             docs/INDEX.md

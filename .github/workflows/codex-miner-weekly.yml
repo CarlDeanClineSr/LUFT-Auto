@@ -6,32 +6,52 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   run-miner:
     runs-on: ubuntu-latest
+    # Prevent self-trigger loops
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
       - name: Install dependencies
         run: |
           pip install -r requirements.txt || true
           pip install -r tools/requirements.txt || true
-      - name: Run knowledge miner
+      - name: Run knowledge miner (with GitHub token)
+        # Guard GitHub-dependent step with token check
+        if: ${{ secrets.GITHUB_TOKEN != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python tools/knowledge_miner.py --config codex/config.yaml
-      - name: Commit changes if any
+      - name: Run knowledge miner (fallback mode)
+        # Fallback mode when GitHub token is not available
+        if: ${{ secrets.GITHUB_TOKEN == '' }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ -n "$(git status --porcelain codex)" ]]; then
-            git add codex/
-            git commit -m "chore(codex): weekly knowledge miner update"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+          echo "INFO: GITHUB_TOKEN not available, running in limited mode"
+          python tools/knowledge_miner.py --config codex/config.yaml || echo "INFO: Knowledge miner completed with limited access"
+      - name: Create Pull Request with changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(codex): weekly knowledge miner update [skip ci]"
+          title: "chore(codex): weekly knowledge miner update"
+          body: |
+            This is an automated pull request from the weekly knowledge miner.
+            
+            **Manual run instructions:**
+            1. Go to Actions → Codex Miner Weekly
+            2. Click "Run workflow"
+            3. Select branch and click "Run workflow"
+          branch: auto-codex/weekly-update
+          delete-branch: true
+          draft: true
+          add-paths: |
+            codex/
