@@ -39,6 +39,12 @@ Unifications, Physics-based Sciences L.U.F.T.
 
 <!-- LUFT_CONTRIBUTOR_MAP END -->
 
+## Navigation
+
+- [START_HERE.md](START_HERE.md) - Welcome guide and key questions about LUFT & reality-based space
+- [docs/INDEX.md](docs/INDEX.md) - Auto-generated repository index with latest updates
+- [LUFT_Resonance_Watch.md](LUFT_Resonance_Watch.md) - Living log of real-world discoveries and cosmic news
+
 ## Visual Gallery and LUFT Codex
 
 - Image Gallery: See graphics/gallery.md for AI-generated conceptual images and how to reproduce them.
