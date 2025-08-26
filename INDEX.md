@@ -70,9 +70,9 @@
 - git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.idx
-- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.pack
-- git/objects/pack/pack-8e916cb647dbb1ecc871d1b4c9c92bba57beb7fc.rev
+- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.idx
+- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.pack
+- git/objects/pack/pack-fea36a6aadfc661551f64d8dc7c546559fbdb378.rev
 - git/refs/heads/main
 - git/refs/remotes/origin/ci/auto-index
 - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
@@ -87,6 +87,7 @@
 - graphics/gallery.md
 - graphics/prompts.yaml
 - index_diff_log.py
+- luft_cern_higgs_refine.md
 - repo_manifest.txt
 - requirements-optional.txt
 - requirements/coherence_scan.txt
