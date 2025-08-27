@@ -609,3 +609,31 @@ Added lines: 4, Removed lines: 3
  - requirements-optional.txt
 
 
+## Index Diff @ 2025-08-27T23:15:50.959745Z
+
+Added lines: 4, Removed lines: 3
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -77,9 +77,9 @@
+ - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+ - git/logs/refs/remotes/origin/docs/correlation-capacity
+ - git/logs/refs/remotes/origin/main
+-- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.idx
+-- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.pack
+-- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.rev
++- git/objects/pack/pack-0d72c87d35e0632200f48af9aa50191fe0c76743.idx
++- git/objects/pack/pack-0d72c87d35e0632200f48af9aa50191fe0c76743.pack
++- git/objects/pack/pack-0d72c87d35e0632200f48af9aa50191fe0c76743.rev
+ - git/refs/heads/main
+ - git/refs/remotes/origin/ci/auto-index
+ - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
+@@ -114,5 +114,6 @@
+ - tools/generate_luft_images.py
+ - tools/hepmass_fit.py
+ - tools/knowledge_miner.py
++- tools/relativity_corrections.py
+ - update_readme_bilingual.py
+ - xtract_math_lines.py
+
+
