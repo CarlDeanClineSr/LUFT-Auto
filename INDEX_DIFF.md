@@ -483,3 +483,43 @@ Added lines: 4, Removed lines: 3
  - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
 
 
+## Index Diff @ 2025-08-27T16:17:34.028539Z
+
+Added lines: 4, Removed lines: 5
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -71,15 +71,14 @@
+ - git/logs/refs/remotes/origin/copilot/fix-45ba0c6a-ce0e-492a-9337-6da682cdbf39
+ - git/logs/refs/remotes/origin/copilot/fix-6978b218-0752-46f6-a525-b96461a8424e
+ - git/logs/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
+-- git/logs/refs/remotes/origin/copilot/fix-b35e134f-6623-4331-bc5d-8a6afce1fd46
+ - git/logs/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
+ - git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
+ - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+ - git/logs/refs/remotes/origin/docs/correlation-capacity
+ - git/logs/refs/remotes/origin/main
+-- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.idx
+-- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.pack
+-- git/objects/pack/pack-89c3768d86bd274129b7f4451ab55c458dda2a41.rev
++- git/objects/pack/pack-48eac236bf670c4b13b5928f945a974007eaea26.idx
++- git/objects/pack/pack-48eac236bf670c4b13b5928f945a974007eaea26.pack
++- git/objects/pack/pack-48eac236bf670c4b13b5928f945a974007eaea26.rev
+ - git/refs/heads/main
+ - git/refs/remotes/origin/ci/auto-index
+ - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
+@@ -87,7 +86,6 @@
+ - git/refs/remotes/origin/copilot/fix-45ba0c6a-ce0e-492a-9337-6da682cdbf39
+ - git/refs/remotes/origin/copilot/fix-6978b218-0752-46f6-a525-b96461a8424e
+ - git/refs/remotes/origin/copilot/fix-aa249d4d-f87f-4be8-9fc1-40150316d217
+-- git/refs/remotes/origin/copilot/fix-b35e134f-6623-4331-bc5d-8a6afce1fd46
+ - git/refs/remotes/origin/copilot/fix-e8b7f14f-cf1e-4e60-b64d-fa6503830f4a
+ - git/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
+ - git/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+@@ -114,3 +112,4 @@
+ - tools/hepmass_fit.py
+ - tools/knowledge_miner.py
+ - update_readme_bilingual.py
++- xtract_math_lines.py
+
+
