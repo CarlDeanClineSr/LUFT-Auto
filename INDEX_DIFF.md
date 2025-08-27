@@ -580,3 +580,32 @@ Added lines: 4, Removed lines: 3
  - requirements/coherence_scan.txt
 
 
+## Index Diff @ 2025-08-27T23:13:10.403852Z
+
+Added lines: 4, Removed lines: 3
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -77,9 +77,9 @@
+ - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+ - git/logs/refs/remotes/origin/docs/correlation-capacity
+ - git/logs/refs/remotes/origin/main
+-- git/objects/pack/pack-e54f1bee7fd00920e1e4a68d6061907a92864247.idx
+-- git/objects/pack/pack-e54f1bee7fd00920e1e4a68d6061907a92864247.pack
+-- git/objects/pack/pack-e54f1bee7fd00920e1e4a68d6061907a92864247.rev
++- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.idx
++- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.pack
++- git/objects/pack/pack-fc0abd0356e6d7a4966f799f25569858bf0fc901.rev
+ - git/refs/heads/main
+ - git/refs/remotes/origin/ci/auto-index
+ - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
+@@ -96,6 +96,7 @@
+ - graphics/prompts.yaml
+ - index_diff_log.py
+ - luft_cern_higgs_refine.md
++- math/LUFT_Detailed_Equation_and_Explanations.md
+ - math/LUFT_Master_Equation_LongForm.md
+ - repo_manifest.txt
+ - requirements-optional.txt
+
+
