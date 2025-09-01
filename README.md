@@ -53,3 +53,8 @@ Unifications, Physics-based Sciences L.U.F.T.
 Quick start
 - Gallery: pip install -r requirements-optional.txt and run: python tools/generate_luft_images.py --prompts graphics/prompts.yaml --outdir graphics/generated
 - Codex: set GITHUB_TOKEN and run: python tools/knowledge_miner.py --owner "CarlDeanClineSr" --since-days 90
+
+## Relay 004 and Simulation Pointer
+- Relay 004 (Entanglement Sync): relays/relay-004-entanglement_sync.md
+- Minimal CHSH sim (Python, no deps): sims/chsh_entanglement_sim.py
+  - Run: python sims/chsh_entanglement_sim.py --pairs 200000 --seed 42
