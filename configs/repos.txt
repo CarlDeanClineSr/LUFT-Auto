@@ -1,0 +1,7 @@
+# Repositories to monitor (one per line, owner/repo)
+CarlDeanClineSr/Unified-Field-Theory-Solutions-2025
+CarlDeanClineSr/LUFT-Auto
+CarlDeanClineSr/Reality-based-Space-and-its-functionality
+CarlDeanClineSr/Lattice-Unified-Field-Theory-L.U.F.T
+CarlDeanClineSr/LUFT-Unified-Field-Project
+# Add remaining repositories here

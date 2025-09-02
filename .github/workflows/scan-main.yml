@@ -1,0 +1,27 @@
+name: SCAN MAIN — nightly dashboard
+
+on:
+  schedule:
+    - cron: "17 3 * * *"  # nightly UTC
+  workflow_dispatch: {}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install requests
+      - name: Run scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/scan_main_repos.py
+      - name: Upload dashboard artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-main-dashboard
+          path: results/scan_main_STATUS.md
