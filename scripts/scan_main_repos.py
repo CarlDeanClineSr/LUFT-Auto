@@ -85,6 +85,50 @@ def calculate_commit_age(commit_date_str):
         return "Unknown"
 
 
+def get_ci_status(repo_name, default_branch, headers):
+    """Get CI status for repository from GitHub Actions."""
+    runs_url = f"https://api.github.com/repos/{repo_name}/actions/runs"
+    params = f"?branch={default_branch}&per_page=1"
+    
+    runs_data = safe_api_request(f"{runs_url}{params}", headers)
+    
+    if not runs_data or 'workflow_runs' not in runs_data:
+        # No runs found, link to Actions page filtered by branch
+        actions_url = f"https://github.com/{repo_name}/actions?query=branch%3A{default_branch}"
+        return "⚪ No runs", actions_url
+    
+    workflow_runs = runs_data['workflow_runs']
+    if not workflow_runs:
+        # No runs found, link to Actions page filtered by branch
+        actions_url = f"https://github.com/{repo_name}/actions?query=branch%3A{default_branch}"
+        return "⚪ No runs", actions_url
+    
+    # Get the latest run
+    latest_run = workflow_runs[0]
+    status = latest_run.get('status', 'unknown')
+    conclusion = latest_run.get('conclusion', 'unknown')
+    html_url = latest_run.get('html_url', f"https://github.com/{repo_name}/actions")
+    
+    # Determine status icon and text
+    if status == 'completed':
+        if conclusion == 'success':
+            status_text = "✅ Pass"
+        elif conclusion == 'failure':
+            status_text = "❌ Fail"
+        elif conclusion == 'cancelled':
+            status_text = "⚫ Cancelled"
+        else:
+            status_text = f"⚠️ {conclusion.title()}"
+    elif status == 'in_progress':
+        status_text = "🔄 Running"
+    elif status == 'queued':
+        status_text = "⏳ Queued"
+    else:
+        status_text = f"❓ {status.title()}"
+    
+    return status_text, html_url
+
+
 def scan_repository(repo_name, headers):
     """Scan a single repository and return health information."""
     print(f"Scanning {repo_name}...")
@@ -101,6 +145,8 @@ def scan_repository(repo_name, headers):
             'commit_age': 'Unknown',
             'open_issues': 'Unknown',
             'open_prs': 'Unknown',
+            'ci_status': 'Unknown',
+            'ci_url': f"https://github.com/{repo_name}",
             'url': f"https://github.com/{repo_name}",
             'error': 'Failed to fetch repository data'
         }
@@ -140,6 +186,12 @@ def scan_repository(repo_name, headers):
         if all_prs:
             open_prs = len(all_prs)
     
+    # Get CI status from GitHub Actions
+    ci_status = 'Unknown'
+    ci_url = f"https://github.com/{repo_name}/actions"
+    if default_branch != 'Unknown':
+        ci_status, ci_url = get_ci_status(repo_name, default_branch, headers)
+    
     return {
         'repo': repo_name,
         'default_branch': default_branch,
@@ -147,6 +199,8 @@ def scan_repository(repo_name, headers):
         'commit_age': commit_age,
         'open_issues': open_issues,
         'open_prs': open_prs,
+        'ci_status': ci_status,
+        'ci_url': ci_url,
         'url': f"https://github.com/{repo_name}",
         'error': None
     }
@@ -167,30 +221,38 @@ def generate_markdown_summary(scan_results, output_file="results/scan_main_STATU
 
 ## Repository Health Summary
 
-| Repo | Default Branch | Last Commit (ISO) | Commit Age (days) | Open Issues | Open PRs | URL |
-|------|----------------|-------------------|-------------------|-------------|----------|-----|
+| Repo | Open PRs | Stale | CI Status | Last Success |
+|------|----------|-------|-----------|--------------|
 """
     
     for result in scan_results:
         repo = result['repo']
-        branch = result['default_branch']
+        prs = result['open_prs']
+        issues = result['open_issues']  # "Stale" refers to open issues
+        ci_status = result['ci_status']
+        ci_url = result['ci_url']
         last_commit = result['last_commit']
         commit_age = result['commit_age']
-        issues = result['open_issues']
-        prs = result['open_prs']
         url = result['url']
         
-        # Format commit timestamp for display
+        # Format commit timestamp for display (Last Success)
         if last_commit != 'Unknown':
             try:
                 dt = datetime.fromisoformat(last_commit.replace('Z', '+00:00'))
-                last_commit_display = dt.strftime("%Y-%m-%d %H:%M")
+                last_success_display = dt.strftime("%Y-%m-%d %H:%M")
             except:
-                last_commit_display = last_commit
+                last_success_display = last_commit
         else:
-            last_commit_display = last_commit
+            last_success_display = last_commit
         
-        content += f"| [{repo}]({url}) | {branch} | {last_commit_display} | {commit_age} | {issues} | {prs} | [View]({url}) |\n"
+        # Add age to last success if available
+        if commit_age != 'Unknown':
+            last_success_display += f" ({commit_age}d ago)"
+        
+        # Format CI Status as clickable link
+        ci_status_link = f"[{ci_status}]({ci_url})"
+        
+        content += f"| [{repo}]({url}) | {prs} | {issues} | {ci_status_link} | {last_success_display} |\n"
     
     # Add notes section
     content += f"""

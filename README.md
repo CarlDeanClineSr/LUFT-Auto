@@ -28,6 +28,9 @@
 <!-- LUFT_MANIFEST_EN END -->
 
 # LUFT-Auto
+
+[![SCAN MAIN Nightly Dashboard](https://github.com/CarlDeanClineSr/LUFT-Auto/actions/workflows/scan-main.yml/badge.svg?branch=main)](https://github.com/CarlDeanClineSr/LUFT-Auto/actions/workflows/scan-main.yml?query=branch%3Amain)
+
 Unifications, Physics-based Sciences L.U.F.T.
 
 <!-- LUFT_CONTRIBUTOR_MAP START -->
