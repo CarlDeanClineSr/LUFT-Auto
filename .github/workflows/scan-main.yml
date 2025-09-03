@@ -1,0 +1,38 @@
+name: SCAN MAIN Nightly Dashboard
+
+on:
+  schedule:
+    # Run nightly at 03:00 UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  scan-main:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        pip install requests
+        
+    - name: Run SCAN MAIN repository scanner
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python scripts/scan_main_repos.py
+        
+    - name: Upload scan results as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: scan-main-status
+        path: results/scan_main_STATUS.md
+        retention-days: 30
