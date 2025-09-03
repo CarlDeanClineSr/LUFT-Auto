@@ -85,6 +85,95 @@ def calculate_commit_age(commit_date_str):
         return "Unknown"
 
 
+def get_workflow_badge_info(repo_name, default_branch, headers):
+    """Get workflow badge information for a repository."""
+    base_url = f"https://api.github.com/repos/{repo_name}"
+    
+    # First, try to get recent workflow runs to find the most recent one
+    runs_url = f"{base_url}/actions/runs?per_page=1&branch={default_branch}"
+    runs_data = safe_api_request(runs_url, headers)
+    
+    if runs_data and runs_data.get('workflow_runs'):
+        # Get the most recent run and its workflow
+        latest_run = runs_data['workflow_runs'][0]
+        workflow_id = latest_run.get('workflow_id')
+        
+        if workflow_id:
+            # Get workflow details to get the filename
+            workflow_url = f"{base_url}/actions/workflows/{workflow_id}"
+            workflow_data = safe_api_request(workflow_url, headers)
+            
+            if workflow_data:
+                workflow_path = workflow_data.get('path', '')
+                if workflow_path.startswith('.github/workflows/'):
+                    workflow_file = workflow_path.replace('.github/workflows/', '')
+                    return {
+                        'workflow_file': workflow_file,
+                        'workflow_id': workflow_id,
+                        'has_workflow': True
+                    }
+    
+    # Fallback: try to get workflows list and pick the first one with push trigger
+    workflows_url = f"{base_url}/actions/workflows"
+    workflows_data = safe_api_request(workflows_url, headers)
+    
+    if workflows_data and workflows_data.get('workflows'):
+        workflows = workflows_data['workflows']
+        
+        # Look for workflows with push trigger first
+        for workflow in workflows:
+            workflow_detail_url = f"{base_url}/actions/workflows/{workflow['id']}"
+            workflow_detail = safe_api_request(workflow_detail_url, headers)
+            
+            if workflow_detail:
+                # Check if workflow has push trigger (simplified check)
+                workflow_path = workflow_detail.get('path', '')
+                if workflow_path.startswith('.github/workflows/'):
+                    workflow_file = workflow_path.replace('.github/workflows/', '')
+                    return {
+                        'workflow_file': workflow_file,
+                        'workflow_id': workflow['id'],
+                        'has_workflow': True
+                    }
+        
+        # If no workflow with push found, use the first one
+        if workflows:
+            first_workflow = workflows[0]
+            workflow_path = first_workflow.get('path', '')
+            if workflow_path.startswith('.github/workflows/'):
+                workflow_file = workflow_path.replace('.github/workflows/', '')
+                return {
+                    'workflow_file': workflow_file,
+                    'workflow_id': first_workflow['id'],
+                    'has_workflow': True
+                }
+    
+    # No workflows found
+    return {
+        'workflow_file': None,
+        'workflow_id': None,
+        'has_workflow': False
+    }
+
+
+def generate_workflow_badge_markdown(repo_name, default_branch, workflow_info):
+    """Generate markdown for workflow badge and repo name."""
+    if not workflow_info['has_workflow'] or not workflow_info['workflow_file']:
+        # No workflow badge, just return repo name linked to Actions page
+        actions_url = f"https://github.com/{repo_name}/actions?query=branch%3A{default_branch}"
+        return f"[{repo_name}]({actions_url})"
+    
+    # Generate badge URL and link
+    workflow_file = workflow_info['workflow_file']
+    badge_url = f"https://github.com/{repo_name}/actions/workflows/{workflow_file}/badge.svg?branch={default_branch}"
+    workflow_link = f"https://github.com/{repo_name}/actions/workflows/{workflow_file}?query=branch%3A{default_branch}"
+    
+    # Create badge markdown with repo name
+    badge_markdown = f"[![CI]({badge_url})]({workflow_link}) [{repo_name}](https://github.com/{repo_name})"
+    
+    return badge_markdown
+
+
 def scan_repository(repo_name, headers):
     """Scan a single repository and return health information."""
     print(f"Scanning {repo_name}...")
@@ -102,6 +191,7 @@ def scan_repository(repo_name, headers):
             'open_issues': 'Unknown',
             'open_prs': 'Unknown',
             'url': f"https://github.com/{repo_name}",
+            'workflow_info': {'has_workflow': False, 'workflow_file': None, 'workflow_id': None},
             'error': 'Failed to fetch repository data'
         }
     
@@ -140,6 +230,9 @@ def scan_repository(repo_name, headers):
         if all_prs:
             open_prs = len(all_prs)
     
+    # Get workflow badge information
+    workflow_info = get_workflow_badge_info(repo_name, default_branch, headers)
+    
     return {
         'repo': repo_name,
         'default_branch': default_branch,
@@ -148,6 +241,7 @@ def scan_repository(repo_name, headers):
         'open_issues': open_issues,
         'open_prs': open_prs,
         'url': f"https://github.com/{repo_name}",
+        'workflow_info': workflow_info,
         'error': None
     }
 
@@ -179,6 +273,7 @@ def generate_markdown_summary(scan_results, output_file="results/scan_main_STATU
         issues = result['open_issues']
         prs = result['open_prs']
         url = result['url']
+        workflow_info = result.get('workflow_info', {'has_workflow': False, 'workflow_file': None, 'workflow_id': None})
         
         # Format commit timestamp for display
         if last_commit != 'Unknown':
@@ -190,7 +285,10 @@ def generate_markdown_summary(scan_results, output_file="results/scan_main_STATU
         else:
             last_commit_display = last_commit
         
-        content += f"| [{repo}]({url}) | {branch} | {last_commit_display} | {commit_age} | {issues} | {prs} | [View]({url}) |\n"
+        # Generate repo name with workflow badge
+        repo_with_badge = generate_workflow_badge_markdown(repo, branch, workflow_info)
+        
+        content += f"| {repo_with_badge} | {branch} | {last_commit_display} | {commit_age} | {issues} | {prs} | [View]({url}) |\n"
     
     # Add notes section
     content += f"""
