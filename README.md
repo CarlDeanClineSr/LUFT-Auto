@@ -1,29 +1,29 @@
 <!-- LUFT_MANIFEST_JA START -->
-### luftリポジトリマニフェスト
+### 📊 LUFT リポジトリマニフェスト
 
--  **合計ファイル：** 137
--  **最後の更新：** 2025-10-06T07：07：13.735720Z
+- **合計ファイル数:** 137
+- **最終更新:** 2025-10-13T07:06:10.739250Z
 <!-- LUFT_MANIFEST_JA END -->
 
 <!-- LUFT_MANIFEST_RU START -->
-### 📊 Luft Repo Manifest
+### 📊 Манифест репо LUFT
 
-- ** Всего файлов: ** 137
--** Последнее обновление: ** 2025-10-06T07: 07: 12.652912Z
+- **Всего файлов:** 137
+- **Последнее обновление:** 13.10.2025T07:06:09.407936Z
 <!-- LUFT_MANIFEST_RU END -->
 
 <!-- LUFT_MANIFEST_FR START -->
-### 📊 Luft Repo Manifest
+### 📊 Manifeste du dépôt LUFT
 
-- ** Fichiers totaux: ** 137
-- ** Dernière mise à jour: ** 2025-10-06T07: 07: 11.968728Z
+- **Total des fichiers :** 137
+- **Dernière mise à jour :** 2025-10-13T07:06:07.828780Z
 <!-- LUFT_MANIFEST_FR END -->
 
 <!-- LUFT_MANIFEST_EN START -->
 ### 📊 LUFT Repo Manifest
 
 - **Total files:** 137
-- **Last update:** 2025-10-06T07:07:11.968472Z
+- **Last update:** 2025-10-13T07:06:07.828430Z
 
 <!-- LUFT_MANIFEST_EN END -->
 
