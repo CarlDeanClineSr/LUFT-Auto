@@ -67,7 +67,9 @@
 - git/info/exclude
 - git/logs/HEAD
 - git/logs/refs/heads/main
+- git/logs/refs/remotes/origin/charter-symbiosis-pipeline
 - git/logs/refs/remotes/origin/ci/auto-index
+- git/logs/refs/remotes/origin/copilot/charter-symbiosis-pipeline
 - git/logs/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
 - git/logs/refs/remotes/origin/copilot/fix-1dc82f20-f94a-4ad9-baf4-69026adefbf2
 - git/logs/refs/remotes/origin/copilot/fix-3d987346-40f8-4401-a581-501e2046dc2e
@@ -85,11 +87,13 @@
 - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-0072b1c410f137a7c5f5299993fae947adc80436.idx
-- git/objects/pack/pack-0072b1c410f137a7c5f5299993fae947adc80436.pack
-- git/objects/pack/pack-0072b1c410f137a7c5f5299993fae947adc80436.rev
+- git/objects/pack/pack-fd9780543d5291c675b13a3d036d2b4c4f497660.idx
+- git/objects/pack/pack-fd9780543d5291c675b13a3d036d2b4c4f497660.pack
+- git/objects/pack/pack-fd9780543d5291c675b13a3d036d2b4c4f497660.rev
 - git/refs/heads/main
+- git/refs/remotes/origin/charter-symbiosis-pipeline
 - git/refs/remotes/origin/ci/auto-index
+- git/refs/remotes/origin/copilot/charter-symbiosis-pipeline
 - git/refs/remotes/origin/copilot/fix-0ab4a292-ada4-4963-bbd1-42c42e8a0aed
 - git/refs/remotes/origin/copilot/fix-1dc82f20-f94a-4ad9-baf4-69026adefbf2
 - git/refs/remotes/origin/copilot/fix-3d987346-40f8-4401-a581-501e2046dc2e
