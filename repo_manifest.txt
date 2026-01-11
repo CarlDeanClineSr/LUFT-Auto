@@ -36,7 +36,9 @@ docs/LUFT_CERN_Math_AUG26_2025.md
 docs/SMOKE_TEST.md
 docs/black_holes_and_simultaneity.md
 docs/correlation-capacity.md
+docs/pr_28_feedback_2025.md
 docs/reading/bell_1964_epr.md
+docs/scan_dashboard_quickstart.md
 docs/studies/atlas_benchmark.md
 docs/studies/atlas_benchmarks.md
 docs/studies/dimuon_coherence_scan.md
@@ -86,9 +88,9 @@ git/logs/refs/remotes/origin/copilot/fix-f097b34c-8a4e-45a5-96c3-8ee998761e52
 git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
 git/logs/refs/remotes/origin/docs/correlation-capacity
 git/logs/refs/remotes/origin/main
-git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.idx
-git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.pack
-git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.rev
+git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.idx
+git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.pack
+git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.rev
 git/refs/heads/main
 git/refs/remotes/origin/charter-symbiosis-pipeline
 git/refs/remotes/origin/ci/auto-index

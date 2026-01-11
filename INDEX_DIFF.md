@@ -1637,3 +1637,34 @@ Added lines: 3, Removed lines: 3
  - git/refs/remotes/origin/ci/auto-index
 
 
+## Index Diff @ 2026-01-11T18:21:28.658096Z
+
+Added lines: 5, Removed lines: 3
+
+--- Previous INDEX.md
++++ Current INDEX.md
+@@ -38,7 +38,9 @@
+ - docs/SMOKE_TEST.md
+ - docs/black_holes_and_simultaneity.md
+ - docs/correlation-capacity.md
++- docs/pr_28_feedback_2025.md
+ - docs/reading/bell_1964_epr.md
++- docs/scan_dashboard_quickstart.md
+ - docs/studies/atlas_benchmark.md
+ - docs/studies/atlas_benchmarks.md
+ - docs/studies/dimuon_coherence_scan.md
+@@ -88,9 +90,9 @@
+ - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
+ - git/logs/refs/remotes/origin/docs/correlation-capacity
+ - git/logs/refs/remotes/origin/main
+-- git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.idx
+-- git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.pack
+-- git/objects/pack/pack-b520cc7055a6a5184ecf2471ea2f66cd1616ed8c.rev
++- git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.idx
++- git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.pack
++- git/objects/pack/pack-0fd045422fecaf9d4e2337025f3280545089647c.rev
+ - git/refs/heads/main
+ - git/refs/remotes/origin/charter-symbiosis-pipeline
+ - git/refs/remotes/origin/ci/auto-index
+
+
