@@ -90,9 +90,9 @@
 - git/logs/refs/remotes/origin/copilot/fix-f0e34e6b-78f0-48c3-bc76-a5114c48e5ba
 - git/logs/refs/remotes/origin/docs/correlation-capacity
 - git/logs/refs/remotes/origin/main
-- git/objects/pack/pack-9de09168036e363c268c32fbc071b5c8d7eadfbe.idx
-- git/objects/pack/pack-9de09168036e363c268c32fbc071b5c8d7eadfbe.pack
-- git/objects/pack/pack-9de09168036e363c268c32fbc071b5c8d7eadfbe.rev
+- git/objects/pack/pack-eaf40c4827462f0d238e4d6d61b1e9c383255130.idx
+- git/objects/pack/pack-eaf40c4827462f0d238e4d6d61b1e9c383255130.pack
+- git/objects/pack/pack-eaf40c4827462f0d238e4d6d61b1e9c383255130.rev
 - git/refs/heads/main
 - git/refs/remotes/origin/charter-symbiosis-pipeline
 - git/refs/remotes/origin/ci/auto-index
